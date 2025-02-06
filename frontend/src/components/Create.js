@@ -27,11 +27,20 @@ const Create = ({ uploadToPinata, createFund }) => {
             return;
         }
 
+        
+
         setIsCreating(true);
 
         try {
+            const currentTime = Math.floor(Date.now() / 1000);
             const unixTimestamp = Math.floor(new Date(deadline).getTime() / 1000);
             const deadlineNanoseconds = unixTimestamp * 1_000_000_000;
+
+            if (unixTimestamp <= currentTime) {
+                alert('Deadline must be in the future.');
+                return;
+            }
+
             const ImageIpfsHash = await uploadToPinata(file);
 
             createFund(ImageIpfsHash, name, description, targetAmount, deadlineNanoseconds);
@@ -107,6 +116,7 @@ const Create = ({ uploadToPinata, createFund }) => {
                             type="datetime-local"
                             value={deadline}
                             onChange={(e) => setDeadline(e.target.value)}
+                            min={new Date().toISOString().slice(0, 16)}
                             className="w-full p-2 rounded-lg border border-gray-300"
                         />
                     </div>

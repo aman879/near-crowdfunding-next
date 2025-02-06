@@ -34,12 +34,15 @@ export const Navbar = ({ onRouteChange }) => {
                         </li>
                     ))}
                 </ul>
-                <button
-                    className="flex flex-row items-center justify-center border-[0.5px] font-semibold p-2 text-sm text-gray-500 rounded-lg hover:bg-purple-500 hover:border-gray-950 hover:text-slate-50 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                    onClick={action}
-                >
-                    {label}
-                </button>
+                <div className='rounded-lg overflow-hidden border'>
+
+                    <button
+                        className="flex flex-row items-center justify-center  font-semibold p-2 text-sm text-gray-500 rounded-lg hover:bg-purple-500  hover:text-slate-50 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                        onClick={action}
+                    >
+                        {label}
+                    </button>
+                </div>
 
             </div>
         </nav>

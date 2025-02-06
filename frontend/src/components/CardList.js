@@ -1,5 +1,6 @@
 import React from "react";
 import Card from "./Card";
+import '@/styles/app.module.css';
 
 const CardList = ({ allCampaigns, fundCampaign }) => {
 
@@ -24,7 +25,7 @@ const CardList = ({ allCampaigns, fundCampaign }) => {
   }
 
   return (
-    <div>
+    <div >
       {allCampaigns.length === 0 ? (
         <p>No Campaigns found.</p>
       ) : (

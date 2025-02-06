@@ -45,12 +45,21 @@ const IndexPage = () => {
 
                     const currentTimestamp = Math.floor(Date.now() / 1000);
                     const deadlineNanoseconds = currentTimestamp * 1_000_000_000;
-                    
-                    const camp = campaigns.map(([id, campaign]) => ({
-                        id,
-                        ...campaign,
-                        status: campaign.deadline > deadlineNanoseconds ? "open" : "closed"
-                    }));
+
+                    const camp = campaigns.map(([id, campaign]) => {
+                        const collectedAmount = parseFloat(campaign.amount_collected.split(" ")[0]);
+                        const targetAmount = parseFloat(campaign.target.split(" ")[0]);
+                        console.log(collectedAmount, targetAmount, id);
+                        if (collectedAmount >= targetAmount) {
+                            console.log("closed", id)
+                        }
+                        return {
+
+                            id,
+                            ...campaign,
+                            status: campaign.deadline > deadlineNanoseconds && collectedAmount < targetAmount ? "open" : "closed"
+                        }
+                    });
 
                     console.log(camp);
                     
